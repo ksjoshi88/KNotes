@@ -56,6 +56,9 @@ group :development, :test do
 
   #to help see debugging info
   gem 'awesome_print'
+
+  #gem to create dummy text
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 end
 
 group :development do
