@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-3">
+    <h3> Area for hashtags</h3>
+  </div>
+  <div class="col-md-9">
+    <% if @notes_count > 0 %>
+       <% @notes.each do |note| %>
+         <div class="note-container">
+           <%= note.content %>
+         </div>
+       <% end %>
+    <% else %>
+      <h5 class="notes-unavailable-container"> No notes available.</h5>
+    <% end %>
+  </div>
+</div>
