@@ -2,15 +2,32 @@
   <div class="col-md-3">
     <h3> Area for hashtags</h3>
   </div>
-  <div class="col-md-9">
+  <div class="col-md-9 notes-main-container">
+    <div class="row ">
+      <button class="btn btn-success create-note-button">New Note</button>
+    </div>
+    <div class="row new-note-container">
+      <div class="col-xs-12 col-md-12">
+        <textarea name="new-note-area" id="new-note-text" cols="30" rows="10"></textarea>
+      </div>
+      <div class="col-xs-12 col-md-12">
+        <button class="btn btn-warning" id="cancel-new-note">Cancel</button>
+        <button class="btn btn-primary" id="post-new-note">Post</button>
+      </div>
+    </div>
+
     <% if @notes_count > 0 %>
-       <% @notes.each do |note| %>
-         <div class="note-container">
-           <%= note.content %>
-         </div>
-       <% end %>
+      <% @notes.each do |note| %>
+        <div class="note-container">
+          <%= note.content %>
+        </div>
+      <% end %>
     <% else %>
       <h5 class="notes-unavailable-container"> No notes available.</h5>
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+    new KNOTES.NotesManager($('.notes-main-container'));
+</script>

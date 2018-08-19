@@ -5,7 +5,6 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
 
-
   test "should be able to get notes" do
     create_notes()
     get notes_url()
@@ -23,6 +22,13 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     get notes_url()
     assert_equal assigns(:notes).count, 0
     assert_select '.notes-unavailable-container', 1
+  end
+
+  test "should be able to create note" do
+    note = build(:note)
+    post notes_url(note: {content: note.content})
+    json_response = JSON.parse(response.body)
+    assert_equal json_response["message"], 'Note created'
   end
 
   private
