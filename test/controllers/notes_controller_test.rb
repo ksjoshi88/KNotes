@@ -31,6 +31,15 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     assert_equal json_response["message"], 'Note created'
   end
 
+  test "should be able to delete note" do
+    note = create(:note)
+    assert_difference('Note.count', -1) do
+      delete note_url(note)
+    end
+    json_response = JSON.parse(response.body)
+    assert_equal json_response["message"], 'Note deleted'
+  end
+
   private
 
   def create_notes

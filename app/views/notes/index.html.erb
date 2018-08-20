@@ -20,6 +20,7 @@
       <% @notes.each do |note| %>
         <div class="note-container">
           <%= note.content %>
+          <a class="delete-note" href="" data-id="<%= note.id %>"> Delete</a>
         </div>
       <% end %>
     <% else %>

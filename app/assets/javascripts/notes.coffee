@@ -18,6 +18,10 @@ class KNOTES.NotesManager
       @postNewNote()
     @container.find('#cancel-new-note').click (event) =>
       @cancelNewNote()
+    @container.find('.delete-note').click (event) =>
+      @deleteNote($(event.target))
+    @container.find('.edit-note').click (event) =>
+      @editNote($(event.target))
 
 
   startNewNote: () ->
@@ -49,6 +53,18 @@ class KNOTES.NotesManager
         url: '/get_project_status/' + projectId
         success: (data) =>
           @drawChart(data, 'Project Status - ' + projectTitle)
+        error: (data) =>
+          alert(data)
+    return
+
+  deleteNote:(noteElement) =>
+    noteId = noteElement.data('id')
+    unless noteId == ""
+      $.ajax
+        type: "DELETE"
+        url: '/notes/' + noteId
+        success: (data) =>
+          noteElement.parent().remove()
         error: (data) =>
           alert(data)
     return
